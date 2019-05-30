@@ -59,4 +59,4 @@ gem "bulma-rails", "~> 0.7.5"
 
 gem "haml-rails", "~> 2.0"
 
-gem 'authie', '~> 3.1'
+gem 'authie', '~> 3.2'

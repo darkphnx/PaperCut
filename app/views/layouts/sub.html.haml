@@ -17,8 +17,12 @@
             .navbar-end
               .navbar-item
                 .buttons
-                  = link_to "Login", login_path, class: 'button is-primary'
-                  %a.button.is-light Signup
+                  - if logged_in?
+                    = link_to "My Events", '', class: 'button is-primary'
+                    = link_to "Logout", logout_path, class: 'button is-light'
+                  - else
+                    = link_to "Login", login_path, class: 'button is-primary'
+                    = link_to "Register", register_path, class: 'button is-light'
 
       .hero-body
         .container

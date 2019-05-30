@@ -1,0 +1,24 @@
+.card
+  = form_with model: @user, url: register_path, builder: InlineErrorsFormBuilder do |f|
+    .card-header
+      %p.card-header-title Register for an account
+
+    .card-content
+      .field
+        = f.label :name, class: "label"
+        .control= f.text_field :name, class: "input", autofocus: true
+        = f.errors_for :name
+      .field
+        = f.label :email_address, class: "label"
+        .control= f.text_field :email_address, class: "input", autofocus: true
+        = f.errors_for :email_address
+      .field
+        = f.label :password, class: "label"
+        .control= f.password_field :password, class: "input"
+        = f.errors_for :password
+      .field
+        = f.label :password_confirmation, "Confirm your password", class: "label"
+        .control= f.password_field :password_confirmation, class: "input"
+        = f.errors_for :password_confirmation
+      .field
+        .control= f.submit "Register", class: 'button is-primary'

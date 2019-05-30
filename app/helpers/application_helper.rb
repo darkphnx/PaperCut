@@ -3,7 +3,7 @@ module ApplicationHelper
     'alert' => 'is-danger'
   }
 
-  def show_flash_messages
+  def flash_messages
     flash.map do |level, message|
       level_css_class = FLASH_LEVEL_CSS_CLASS[level]
 

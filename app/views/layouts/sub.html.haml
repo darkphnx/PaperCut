@@ -18,7 +18,7 @@
               .navbar-item
                 .buttons
                   - if logged_in?
-                    = link_to "My Events", '', class: 'button is-primary'
+                    = link_to "My Events", events_path, class: 'button is-primary'
                     = link_to "Logout", logout_path, class: 'button is-light'
                   - else
                     = link_to "Login", login_path, class: 'button is-primary'
@@ -29,12 +29,12 @@
           .columns.is-vcentered
             .column
               %h1
-                %span.title PaperCut
-                %span.icon
-                  %i.fas.fa-hand-scissors.fa-lg{data: {"fa-transform" => 'flip-h'}}
-                %span.icon
-                  %i.fas.fa-hand-paper.fa-lg
-              %h2.subtitle
+                %span.title.is-1 PaperCut
+                %span.icon.is-medium
+                  %i.fas.fa-2x.fa-hand-scissors.fa-lg{data: {"fa-transform" => 'flip-h'}}
+                %span.icon.is-medium
+                  %i.fas.fa-2x.fa-hand-paper.fa-lg
+              %h2.subtitle.is-3
                 Simple curation for your Call for Papers
 
             .column= yield

@@ -12,4 +12,14 @@ module ApplicationHelper
       end
     end.join.html_safe
   end
+
+  def page_title(title = nil)
+    @page_title = title if title.present?
+    @page_title
+  end
+
+  def page_subtitle(subtitle = nil)
+    @page_subtitle = subtitle if subtitle.present?
+    @page_subtitle
+  end
 end

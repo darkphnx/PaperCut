@@ -1,0 +1,16 @@
+.card
+  = form_with url: login_path do |f|
+    .card-header
+      %p.card-header-title Login
+
+    .card-content
+      = show_flash_messages
+
+      .field
+        = f.label :email_address, class: "label"
+        .control= f.text_field :email_address, value: params[:email_address], class: "input", autofocus: true
+      .field
+        = f.label :password, class: "label"
+        .control= f.password_field :password, class: "input"
+      .field
+        .control= f.submit "Login", class: 'button is-primary'

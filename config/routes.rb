@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'pages/home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'register', to: 'register#new'
+  post 'register', to: 'register#create'
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
 
   root 'pages#home'
 end

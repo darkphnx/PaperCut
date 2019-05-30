@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %title PaperCut
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_tag "", defer: true, src: "https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+  %body
+
+    %section.hero.is-fullheight.is-primary.is-bold
+      .hero-head
+        .navbar
+          .container
+            .navbar-end
+              .navbar-item
+                .buttons
+                  = link_to "Login", login_path, class: 'button is-primary'
+                  %a.button.is-light Signup
+
+      .hero-body
+        .container
+          .columns.is-vcentered
+            .column
+              %h1
+                %span.title PaperCut
+                %span.icon
+                  %i.fas.fa-hand-scissors.fa-lg{data: {"fa-transform" => 'flip-h'}}
+                %span.icon
+                  %i.fas.fa-hand-paper.fa-lg
+              %h2.subtitle
+                Simple curation for your Call for Papers
+
+            .column= yield

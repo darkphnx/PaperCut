@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      event:
+        cfp_open_until: Call for papers open until

@@ -19,9 +19,18 @@
       .hero.is-primary.is-bold
         .hero-body
           .container
-            %h2.title.is-2= page_title
-            - if page_subtitle
-              %h3.subtitle.is-4= page_subtitle
+            .level
+              .level-left
+                .titles
+                  %h2.title.is-2= page_title
+                  - if page_subtitle
+                    %h3.subtitle.is-4= page_subtitle
+
+              .level-right
+                - unless header_buttons.empty?
+                  .buttons.are-medium
+                    - header_buttons.each do |button|
+                      = link_to button.title, button.link, class: 'button is-primary is-inverted'
 
     %section
       .container

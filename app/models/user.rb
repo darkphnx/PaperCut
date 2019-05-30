@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :sessions, class_name: 'Authie::Session', as: :user, dependent: :destroy
+  has_many :events
 
   validates :name, presence: true
   validates :email_address, presence: true, format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

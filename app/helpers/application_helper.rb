@@ -22,4 +22,12 @@ module ApplicationHelper
     @page_subtitle = subtitle if subtitle.present?
     @page_subtitle
   end
+
+  def header_buttons
+    @header_buttons ||= []
+  end
+
+  def header_button(title, link)
+    header_buttons << OpenStruct.new(title: title, link: link)
+  end
 end

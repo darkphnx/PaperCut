@@ -1,16 +1,41 @@
 - page_title "New Event"
 - page_subtitle "Define your upcoming event here"
 
-= form_with model: @event, builder: InlineErrorsFormBuilder do |f|
-  .field
-    = f.label :name, class: 'label'
-    .control= f.text_field :label, class: "input", autofocus: true
-    = f.errors_for :name
+%section.section
+  .container
+    .box
+      = form_with model: @event, builder: InlineErrorsFormBuilder do |f|
+        .field
+          = f.label :name, class: 'label'
+          .control= f.text_field :name, class: "input", autofocus: true
+          = f.errors_for :name
 
-  .field
-    = f.label :cfp_open_until, class: 'label'
-    .control= f.date_select :cfp_open_until, class: 'input'
-    = f.errors_for :cfp_open_until
+        .field
+          = f.label :website, class: 'label'
+          .control= f.text_field :website, class: "input", autofocus: true
+          = f.errors_for :website
 
-  .field
-    .control= f.submit class: 'button is-primary'
+        .field
+          = f.label :cfp_open_until, class: 'label'
+          .control= f.date_select :cfp_open_until, class: 'input'
+          = f.errors_for :cfp_open_until
+
+        .field
+          = f.label :date_of_event, class: 'label'
+          .control= f.date_select :date_of_event, class: 'input'
+          = f.errors_for :date_of_event
+
+        .field
+          = f.label :logo, class: 'label'
+          .file.has-name
+            = f.label :logo, class: 'file-label' do
+              = f.file_field :logo, class: 'file-input'
+              %span.file-cta
+                %span.file-icon
+                  %i.fas.fa-upload
+                %span.file-label Upload a logo...
+              %span.file-name= f.object.logo.attached? ? f.object.logo.filename : '...'
+
+
+        .field
+          .control= f.submit class: 'button is-primary'

@@ -2,4 +2,5 @@ en:
   activerecord:
     attributes:
       event:
+        name: Event name
         cfp_open_until: Call for papers open until

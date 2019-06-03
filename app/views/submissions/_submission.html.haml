@@ -1,0 +1,36 @@
+.card
+  %header.card-header
+    %p.card-header-title= submission.title
+  .card-content
+    .media
+      .media-left
+        %span.icon
+          %i.fas.fa-bullhorn
+      .media-content
+        .content= simple_format submission.abstract
+        - if submission.talk_length_in_minutes < 30
+          .tag.is-info #{submission.talk_length_in_minutes} minutes
+        - else
+          .tag.is-primary #{submission.talk_length_in_minutes} minutes
+
+    .media
+      .media-left
+        %span.icon
+          %i.fas.fa-user
+      .media-content
+        .content= simple_format submission.biography
+        - if submission.first_time_speaker?
+          .tag.is-warning first time speaker
+
+  .card-footer
+    .card-footer-item
+      - if submission.votes.zero?
+        No votes
+      - else
+        - submission.votes.times do
+          %icon.icon
+            %i.fas.fa-star.has-text-warning
+    .card-footer-item
+      = link_to "Edit", edit_event_submission_path(submission.event, submission)
+    .card-footer-item
+      = link_to "Delete", event_submission_path(submission.event, submission), class: 'has-text-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" }

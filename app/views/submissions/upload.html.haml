@@ -1,0 +1,30 @@
+- page_title "#{@event.name} Submission Upload"
+- page_subtitle "Upload a new set of CFP submissions to PaperCut in preparation for ranking"
+
+%section.section
+  .container
+    .box
+      = form_with url: upload_event_submissions_path(@event) do |f|
+        .field
+          = f.label :csv_upload, "CSV Upload", class: 'label'
+          .file.has-name
+            = f.label :csv_upload, class: 'file-label' do
+              = f.file_field :csv_upload, class: 'file-input'
+              %span.file-cta
+                %span.file-icon
+                  %i.fas.fa-upload
+                %span.file-label Upload a CSV...
+              %span.file-name ...
+
+        .field
+          = f.label :delete_existing, "Replace Existing Submissions?", class: 'label'
+          .control
+            = f.label '', for: nil, class: 'radio' do
+              = f.radio_button :delete_existing, '1', checked: true
+              Yes
+            = f.label '', for: nil, class: 'radio' do
+              = f.radio_button :delete_existing, '0'
+              No
+
+        .field
+          .control= f.submit "Upload", class: 'button is-primary'

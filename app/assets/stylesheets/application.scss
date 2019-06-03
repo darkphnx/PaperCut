@@ -15,3 +15,7 @@
  */
 
  @import "bulma";
+
+ .card ~ .card {
+   margin-top: 1.5rem;
+ }

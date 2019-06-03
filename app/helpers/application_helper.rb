@@ -27,7 +27,7 @@ module ApplicationHelper
     @header_buttons ||= []
   end
 
-  def header_button(title, link)
-    header_buttons << OpenStruct.new(title: title, link: link)
+  def header_button(icon, link)
+    header_buttons << OpenStruct.new(icon: icon, link: link)
   end
 end

@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   private
 
   def safe_event_params
-    params.require(:event).permit(:name, :website, :cfp_open_until, :date_of_event, :logo)
+    params.require(:event).permit(:name, :website, :cfp_open_until, :date_of_event, :logo, :voting_open)
   end
 
   def find_event

@@ -6,16 +6,20 @@
       .media-content
         %p.is-size-5= event.name
 
-        %p
-          - if event.cfp_open?
-            %span.tag.is-info
-              CFP closes
-              = event.cfp_open_until.strftime("%b %d, %Y")
-          - else
-            %span.tag.is-danger
-              CFP closed
 
         %p.is-size-7
+          = link_to "Submissions (#{event.submissions.count})", event_submissions_path(event)
+          ·
           = link_to "Edit", edit_event_path(event)
           ·
-          = link_to "Delete", event_path(event), data: { method: "Delete", confirm: "Are you sure you want to delete #{event.name}" }
+          = link_to "Delete", event_path(event), class: 'has-text-danger', data: { method: "Delete", confirm: "Are you sure you want to delete #{event.name}" }
+
+      .media-right
+        %p
+          - if event.cfp_open?
+            %span.tag.is-dark
+              CFP closes
+              = distance_of_time_in_words_to_now event.cfp_open_until
+          - else
+            %span.tag.is-warning
+              Voting open

@@ -12,7 +12,7 @@
         .buttons
           - if logged_in?
             = link_to "My Events", events_path, class: 'button is-primary'
-            = link_to "Logout", logout_path, class: 'button is-light'
+            = link_to "Logout", logout_path, class: 'button is-primary is-inverted'
           - else
             = link_to "Login", login_path, class: 'button is-primary'
-            = link_to "Register", register_path, class: 'button is-light'
+            = link_to "Register", register_path, class: 'button is-primary is-inverted'

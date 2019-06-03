@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_145007) do
+ActiveRecord::Schema.define(version: 2019_06_03_161134) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_05_31_145007) do
     t.bigint "voter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "weight", default: 0
     t.index ["submission_id"], name: "index_submission_votes_on_submission_id"
     t.index ["voter_id"], name: "index_submission_votes_on_voter_id"
   end

@@ -26,8 +26,11 @@
 
             .level-right
               - unless header_buttons.empty?
-                .buttons.are-medium
+                .buttons
                   - header_buttons.each do |button|
-                    = link_to button.title, button.link, class: 'button is-primary is-inverted'
+                    = link_to button.link, class: 'button is-medium is-primary is-inverted' do
+                      %span.icon
+                        %i.fas.fa-lg{class: "fa-#{button.icon}"}
+
 
     = yield

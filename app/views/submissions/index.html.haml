@@ -1,0 +1,7 @@
+- page_title "#{@event.name} Submissions"
+- page_subtitle "View, edit and order all of the received submissions for #{@event.name}"
+- header_button "upload", upload_event_submissions_path(@event)
+
+%section.section
+  .container
+    = render @submissions

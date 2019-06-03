@@ -1,14 +1,11 @@
 .navbar
   .container
-    - if show_brand
-      .navbar-brand
-        = link_to root_path, class: 'navbar-item' do
-          %h1
-            %span.title.has-text-primary PaperCut
-            %span.icon.has-text-primary
-              %i.fas.fa-hand-scissors.fa-lg{data: {"fa-transform" => 'flip-h'}}
-            %span.icon.has-text-primary
-              %i.fas.fa-hand-paper.fa-lg
+    .navbar-brand
+      = link_to root_path, class: 'navbar-item' do
+        %span.icon.has-text-white
+          %i.fas.fa-hand-scissors.fa-lg{data: {"fa-transform" => 'flip-h'}}
+        %span.icon.has-text-white
+          %i.fas.fa-hand-paper.fa-lg
 
     .navbar-end
       .navbar-item

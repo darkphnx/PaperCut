@@ -12,9 +12,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_tag "", defer: true, src: "https://use.fontawesome.com/releases/v5.3.1/js/all.js"
   %body
-    = render 'layouts/navbar', show_brand: true
-
-    .hero.is-primary.is-bold
+    %section.hero.is-primary.is-bold
+      .hero-head
+        = render 'layouts/navbar'
       .hero-body
         .container
           .level

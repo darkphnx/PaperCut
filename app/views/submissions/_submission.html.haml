@@ -2,30 +2,32 @@
   %header.card-header
     %p.card-header-title= submission.title
   .card-content
-    .media
-      .media-left
-        %span.icon
-          %i.fas.fa-bullhorn
-      .media-content
-        .content= simple_format submission.abstract
-        - if submission.talk_length_in_minutes < 30
-          .tag.is-info #{submission.talk_length_in_minutes} minutes
-        - else
-          .tag.is-primary #{submission.talk_length_in_minutes} minutes
+    .columns
+      .column
+        .media
+          .media-left
+            %span.icon
+              %i.fas.fa-user
+          .media-content
+            .content= simple_format submission.biography
+            - if submission.first_time_speaker?
+              .tag.is-warning first time speaker
 
-    .media
-      .media-left
-        %span.icon
-          %i.fas.fa-user
-      .media-content
-        .content= simple_format submission.biography
-        - if submission.first_time_speaker?
-          .tag.is-warning first time speaker
+      .column
+        .media
+          .media-left
+            %span.icon
+              %i.fas.fa-bullhorn
+          .media-content
+            .content= simple_format submission.abstract
+            .is-size-7.has-text-right
+              %progress.progress.is-info{value: submission.talk_length_in_minutes, max: 40}
+              = pluralize submission.talk_length_in_minutes, 'minute'
 
   .card-footer
     .card-footer-item
       - if submission.votes.zero?
-        No votes
+        No votes yet!
       - else
         - submission.votes.times do
           %icon.icon

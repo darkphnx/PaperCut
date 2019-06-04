@@ -1,7 +1,7 @@
 - page_title "Edit #{@event.name}"
 - page_subtitle "Define your upcoming event here"
+- breadcrumb "My Events", events_path
+- breadcrumb "Edit #{@event.name}"
 
-%section.section
-  .container
-    .box
-      = render 'form'
+.box
+  = render 'form'

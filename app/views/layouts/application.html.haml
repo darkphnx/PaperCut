@@ -13,8 +13,6 @@
     = javascript_tag "", defer: true, src: "https://use.fontawesome.com/releases/v5.3.1/js/all.js"
   %body
     %section.hero.is-primary.is-bold
-      .hero-head
-        = render 'layouts/navbar'
       .hero-body
         .container
           .level
@@ -33,4 +31,33 @@
                         %i.fas.fa-lg{class: "fa-#{button.icon}"}
 
 
-    = yield
+    %section.section.main-body
+      .container
+        - unless breadcrumbs.blank?
+          %nav.breadcrumb.has-bullet-separator
+            %ul
+              - breadcrumbs.each do |breadcrumb|
+                - if breadcrumb.link
+                  %li= link_to breadcrumb.title, breadcrumb.link
+                - else
+                  %li.is-active= link_to breadcrumb.title, '#'
+
+        = yield
+
+    %footer.footer
+      .content.has-text-centered
+        %p
+          = link_to root_path do
+            %span.icon.has-text-grey-dark
+              %i.fas.fa-hand-scissors.fa-lg{data: {"fa-transform" => 'flip-h'}}
+            %span.icon.has-text-grey-dark
+              %i.fas.fa-hand-paper.fa-lg
+
+        %p
+          Logged in as
+          = current_user.name
+          %br
+          = link_to "My Events", events_path
+          ·
+          = link_to "Logout", logout_path
+

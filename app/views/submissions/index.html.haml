@@ -2,13 +2,14 @@
 - page_subtitle "View, edit and order all of the received submissions for #{@event.name}"
 - header_button "upload", upload_event_submissions_path(@event)
 
-%section.section
-  .container
-    .message.is-warning
-      .message-body
-        %p
-          %span.has-text-weight-semibold Voting Link:
-          = link_to event_vote_url(@event, @event.voting_token), event_vote_url(@event, @event.voting_token)
-          &mdash; Share and distribute this link with anyone that you'd like to assist in ranking these submissions.
+- breadcrumb "My Events", events_path
+- breadcrumb "#{@event.name} Submissions"
 
-    = render @submissions
+.message.is-primary
+  .message-body
+    %p
+      %span.has-text-weight-semibold Voting Link:
+      = link_to event_vote_url(@event, @event.voting_token), event_vote_url(@event, @event.voting_token)
+      &mdash; Share and distribute this link with anyone that you'd like to assist in ranking these submissions.
+
+= render @submissions

@@ -30,4 +30,12 @@ module ApplicationHelper
   def header_button(icon, link)
     header_buttons << OpenStruct.new(icon: icon, link: link)
   end
+
+  def breadcrumbs
+    @breadcrumbs ||= []
+  end
+
+  def breadcrumb(title, link = false)
+    breadcrumbs << OpenStruct.new(title: title, link: link)
+  end
 end

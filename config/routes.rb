@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       get :upload, on: :collection
       post :upload, action: :process_upload, on: :collection
     end
+
+    get 'vote/:voting_token', to: 'voting#index', as: 'vote'
+    post 'vote/:voting_token', to: 'voting#create'
   end
 
   get 'register', to: 'registration#new'

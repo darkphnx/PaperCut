@@ -4,4 +4,11 @@
 
 %section.section
   .container
+    .message.is-warning
+      .message-body
+        %p
+          %span.has-text-weight-semibold Voting Link:
+          = link_to event_vote_url(@event, @event.voting_token), event_vote_url(@event, @event.voting_token)
+          &mdash; Share and distribute this link with anyone that you'd like to assist in ranking these submissions.
+
     = render @submissions

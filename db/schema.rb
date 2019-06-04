@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_161134) do
+ActiveRecord::Schema.define(version: 2019_06_04_105248) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_161134) do
     t.datetime "updated_at", null: false
     t.datetime "date_of_event"
     t.string "website"
+    t.string "voting_token"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

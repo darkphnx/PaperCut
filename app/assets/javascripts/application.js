@@ -14,3 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+  var ratingWidgets = document.querySelectorAll('.js-rating');
+
+  ratingWidgets.forEach(function(ratingWidget) {
+    new RatingWidget(ratingWidget);
+  });
+});

@@ -6,8 +6,10 @@ class Submission < ApplicationRecord
   has_many :submission_votes, dependent: :destroy
   has_many :voters, through: :submission_votes
 
+  scope :by_random, -> { order(Arel.sql('rand()')) }
+
   def self.by_popularity
-    left_outer_joins(:submission_votes).group('submissions.id').order("SUM(submission_votes.weight) DESC")
+    left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("SUM(submission_votes.weight) DESC"))
   end
 
   def votes

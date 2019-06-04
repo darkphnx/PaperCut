@@ -53,11 +53,12 @@
             %span.icon.has-text-grey-dark
               %i.fas.fa-hand-paper.fa-lg
 
-        %p
-          Logged in as
-          = current_user.name
-          %br
-          = link_to "My Events", events_path
-          ·
-          = link_to "Logout", logout_path
+        - if logged_in?
+          %p
+            Logged in as
+            = current_user.name
+            %br
+            = link_to "My Events", events_path
+            ·
+            = link_to "Logout", logout_path
 

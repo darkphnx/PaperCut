@@ -26,12 +26,19 @@
 
   .card-footer
     .card-footer-item
-      - if submission.votes.zero?
-        No votes yet!
+      - if defined?(rating_form)
+        .js-rating
+          = rating_form.hidden_field "rating[#{submission.id}]", value: '0', class: 'js-rating-field'
+          - 5.times do |i|
+            = link_to '#', class: 'icon js-rating-select', data: { rating: i } do
+              %i.far.fa-star.js-rating-indicator
       - else
-        - submission.votes.times do
-          %icon.icon
-            %i.fas.fa-star.has-text-warning
+        - if submission.votes.zero?
+          No votes yet!
+        - else
+          - submission.votes.times do
+            %icon.icon
+              %i.fas.fa-star.has-text-warning
     .card-footer-item
       = link_to "Edit", edit_event_submission_path(submission.event, submission)
     .card-footer-item

@@ -1,0 +1,12 @@
+- page_title @event.name
+- page_subtitle "Vote on papers submitted through the CFP process"
+
+.message.is-primary
+  .message-body
+    %p
+      Welcome! Thanks for helping us curate the responses to our Call for Papers. Simply read the biography and
+      abstract for each talk and then rate it 0 &mdash; 5 stars depending on how much you'd like to see that talk.
+      At the end, of the page, pop in your email address and hit submit!
+
+= form_with url: event_vote_path(@event, @event.voting_token) do |f|
+  = render @submissions, rating_form: f

@@ -2,4 +2,13 @@
 - page_subtitle "Upcoming and past events"
 - header_button "calendar-plus", new_event_path
 
-.columns= render @events
+- if @events.exists?
+  .columns= render @events
+- else
+  .box.no-data
+    %h3.title.has-text-grey No Events Yet
+    %h3.subtitle.has-text-grey
+      Please
+      = link_to "create an event", new_event_path
+      to get started
+

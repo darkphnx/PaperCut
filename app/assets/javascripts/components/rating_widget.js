@@ -2,15 +2,17 @@
   function RatingWidget(container){
     this.container = container;
 
+    this.cacheKey = this.container.dataset.cacheKey;
+    this.selectedIndex = null;
+
     this.field = container.querySelector('.js-rating-field');
     this.selects = container.querySelectorAll('.js-rating-select');
 
     this.highlight = this.highlight.bind(this);
     this.unhighlightAll = this.unhighlightAll.bind(this);
 
-    this.selectedIndex = null;
-
     this._bindEvents();
+    this._restoreCachedRating();
   }
 
   RatingWidget.prototype._bindEvents = function(){
@@ -41,11 +43,30 @@
   RatingWidget.prototype._handleClick = function(e) {
     e.preventDefault();
 
-    // Can't perform indexes and slices on a NodeList
-    var selectsArray = Array.from(this.selects);
-    this.selectedIndex = selectsArray.indexOf(e.currentTarget);
+    var rating = e.currentTarget.dataset.rating;
 
-    this.field.setAttribute('value', e.currentTarget.dataset.rating)
+    this.setRating(rating);
+    this.setCachedRating(rating);
+  }
+
+  RatingWidget.prototype._restoreCachedRating = function() {
+    var cachedRating = this.getCachedRating();
+
+    if(cachedRating) {
+      this.setRating(cachedRating);
+    }
+  }
+
+  RatingWidget.prototype.setRating = function(rating) {
+    this.field.setAttribute('value', rating);
+
+    // Set the selectedIndex to refer to the position of the highlighted item
+    var selectsArray = Array.from(this.selects);
+    this.selectedIndex = selectsArray.findIndex((select) => {
+      return select.dataset.rating == rating;
+    });
+
+    this.highlight(this.selectedIndex);
 
     this.selects.forEach((select) => {
       select.classList.add('has-text-warning');
@@ -74,6 +95,20 @@
       icon.classList.add('far');
       icon.classList.remove('fas');
     });
+  }
+
+  RatingWidget.prototype.setCachedRating = function(rating) {
+    window.localStorage.setItem(this.cacheKey, rating.toString());
+  }
+
+  RatingWidget.prototype.getCachedRating = function() {
+    var cachedScoreString = window.localStorage.getItem(this.cacheKey);
+
+    if(cachedScoreString) {
+      return parseInt(cachedScoreString);
+    } else {
+      return false;
+    }
   }
 
   window.RatingWidget = RatingWidget;

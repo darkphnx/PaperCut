@@ -15,7 +15,7 @@ class VotingController < ApplicationController
       voter.submission_votes.create!(submission: submission, weight: vote_weight)
     end
 
-    render 'index'
+    render 'thanks'
   end
 
   private

@@ -1,14 +1,16 @@
 module ApplicationHelper
   FLASH_LEVEL_CSS_CLASS = {
-    'alert' => 'is-danger'
-  }
+    'alert' => 'is-danger',
+    'notice' => 'is-primary'
+  }.freeze
 
   def flash_messages
     flash.map do |level, message|
       level_css_class = FLASH_LEVEL_CSS_CLASS[level]
 
-      content_tag(:article, class: ['message', level_css_class]) do
-        content_tag(:div, message, class: 'message-body')
+      content_tag(:div, class: ['notification', 'js-notification', level_css_class]) do
+        concat button_tag(class: ['delete', 'js-notification-close'])
+        concat message
       end
     end.join.html_safe
   end

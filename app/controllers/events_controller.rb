@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(safe_event_params)
 
     if @event.save
-      redirect_to events_path
+      redirect_to events_path, notice: "#{@event.name} created successfully"
     else
       render 'new'
     end
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(safe_event_params)
-      redirect_to events_path
+      redirect_to events_path, notice: "#{@event.name} updated successfully"
     else
       render 'edit'
     end
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path
+    redirect_to events_path, notice: "#{@event.name} removed successfully"
   end
 
   private

@@ -28,4 +28,9 @@ document.addEventListener("DOMContentLoaded", function(){
   fileUploads.forEach(function(fileUpload) {
     new FileUpload(fileUpload);
   });
+
+  var notifications = document.querySelectorAll('.js-notification');
+  notifications.forEach(function(notification) {
+    new Notification(notification);
+  });
 });

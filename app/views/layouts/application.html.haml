@@ -42,7 +42,10 @@
                 - else
                   %li.is-active= link_to breadcrumb.title, '#'
 
+        = flash_messages
+
         = yield
+
 
     %footer.footer
       .content.has-text-centered

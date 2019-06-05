@@ -17,13 +17,13 @@ class SubmissionsController < ApplicationController
       Submission.from_csv(@event, params[:csv_upload].to_io)
     end
 
-    redirect_to event_submissions_path(@event)
+    redirect_to event_submissions_path(@event), notice: "Submissions for #{@event.name} have been processed successfully"
   end
 
   def destroy
     @submission.destroy
 
-    redirect_to event_submissions_path(@event)
+    redirect_to event_submissions_path(@event), notice: "Submission #{@submission.title} has been removed"
   end
 
   private

@@ -23,4 +23,9 @@ document.addEventListener("DOMContentLoaded", function(){
   ratingWidgets.forEach(function(ratingWidget) {
     new RatingWidget(ratingWidget);
   });
+
+  var fileUploads = document.querySelectorAll('.file.has-name');
+  fileUploads.forEach(function(fileUpload) {
+    new FileUpload(fileUpload);
+  });
 });

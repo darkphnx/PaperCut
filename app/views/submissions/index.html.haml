@@ -18,8 +18,8 @@
       %tr
         %th Title
         %th E-mail
-        %th Votes
-        %th Duration
+        %th.has-text-right Duration
+        %th.has-text-right Votes
 
     %tbody
       - @submissions.each do |submission|
@@ -29,8 +29,8 @@
             - if submission.first_time_speaker?
               .tag.is-warning first time speaker
           %td= mail_to submission.email_address
-          %td= submission.votes
-          %td= submission.talk_length_in_minutes
+          %td.has-text-right= submission.talk_length_in_minutes
+          %td.has-text-right= submission.votes
 
 - else
   .box.no-data

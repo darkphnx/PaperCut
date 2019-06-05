@@ -3,7 +3,7 @@ class VotingController < ApplicationController
   before_action :find_event
 
   def index
-    @submissions = @event.submissions.by_random
+    @submissions = @event.submissions.by_random(browser_random_seed)
   end
 
   def create
@@ -19,6 +19,12 @@ class VotingController < ApplicationController
   end
 
   private
+
+  # Generate an integer based on the browser's browser_id cookie which ensures someone always sees things in the same
+  # order from this browser
+  def browser_random_seed
+    Digest::MD5.new.digest(cookies[:browser_id]).unpack('Q').first
+  end
 
   def safe_voter_params
     params.permit(:email_address)

@@ -8,7 +8,15 @@
       abstract for each talk and then rate it 0 &mdash; 5 stars depending on how much you'd like to see that talk.
       At the end, of the page, pop in your email address and hit submit!
 
-= form_with url: event_vote_path(@event, @event.voting_token) do |f|
+= form_with model: @voting_slip, url: event_vote_path(@event, @event.voting_token) do |f|
+  - unless f.object.errors.empty?
+    .notification.is-danger
+      .content
+        %p.is-size-5 Sorry, couldn't process your votes:
+        %ul
+          - f.object.errors.full_messages.each do |error|
+            %li= error
+
   = render @submissions, rating_form: f
 
   .form-footer

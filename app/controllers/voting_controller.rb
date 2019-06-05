@@ -1,21 +1,19 @@
 class VotingController < ApplicationController
   skip_before_action :login_required
-  before_action :find_event
+  before_action :find_event, :find_submissions
 
   def index
-    @submissions = @event.submissions.by_random(browser_random_seed)
+    @voting_slip = VotingSlip.new(event: @event)
   end
 
   def create
-    voter = Voter.create!(safe_voter_params)
+    @voting_slip = VotingSlip.new(safe_voting_slip_params.merge(event: @event))
 
-    params[:ratings].each do |submission_id, vote_weight|
-      submission = @event.submissions.find(submission_id)
-
-      voter.submission_votes.create!(submission: submission, weight: vote_weight)
+    if @voting_slip.save
+      render 'thanks'
+    else
+      render 'index'
     end
-
-    render 'thanks'
   end
 
   private
@@ -26,11 +24,15 @@ class VotingController < ApplicationController
     Digest::MD5.new.digest(cookies[:browser_id]).unpack('Q').first
   end
 
-  def safe_voter_params
-    params.permit(:email_address)
+  def safe_voting_slip_params
+    params.require(:voting_slip).permit(:email_address, ratings: {})
   end
 
   def find_event
     @event = Event.find_by!(id: params[:event_id], voting_token: params[:voting_token])
+  end
+
+  def find_submissions
+    @submissions = @event.submissions.by_random(browser_random_seed)
   end
 end

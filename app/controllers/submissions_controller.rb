@@ -8,14 +8,20 @@ class SubmissionsController < ApplicationController
   def show
   end
 
-  def upload
+  def new
   end
 
-  def process_upload
+  def create
     Submission.transaction do
       Submission.destroy_all if params[:delete_existing] == '1'
       Submission.from_csv(@event, params[:csv_upload].to_io)
     end
+
+    redirect_to event_submissions_path(@event)
+  end
+
+  def destroy
+    @submission.destroy
 
     redirect_to event_submissions_path(@event)
   end

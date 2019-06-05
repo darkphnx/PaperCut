@@ -1,6 +1,6 @@
 - page_title "#{@event.name} Submissions"
 - page_subtitle "View, edit and order all of the received submissions for #{@event.name}"
-- header_button "upload", upload_event_submissions_path(@event)
+- header_button "upload", new_event_submission_path(@event)
 
 - breadcrumb "My Events", events_path
 - breadcrumb "#{@event.name} Submissions"
@@ -27,6 +27,6 @@
           = link_to submission.title, event_submission_path(@event, submission)
           - if submission.first_time_speaker?
             .tag.is-warning first time speaker
-        %td= submission.email_address
+        %td= mail_to submission.email_address
         %td= submission.votes
         %td= submission.talk_length_in_minutes

@@ -5,7 +5,7 @@
 - breadcrumb "#{@event.name} Submission Upload"
 
 .box
-  = form_with url: upload_event_submissions_path(@event) do |f|
+  = form_with url: event_submissions_path(@event) do |f|
     .field
       = f.label :csv_upload, "CSV Upload", class: 'label'
       .file.has-name

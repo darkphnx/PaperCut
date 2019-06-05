@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :submissions do
-      get :upload, on: :collection
-      post :upload, action: :process_upload, on: :collection
-    end
+    resources :submissions
 
     get 'vote/:voting_token', to: 'voting#index', as: 'vote'
     post 'vote/:voting_token', to: 'voting#create'

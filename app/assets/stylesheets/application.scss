@@ -14,12 +14,20 @@
  *= require_self
  */
 
- @import "bulma";
+@import "bulma";
 
- .card ~ .card {
+.card ~ .card {
    margin-top: 1.5rem;
- }
+}
 
- .main-body {
+.form-footer {
+  margin-top: 1.5rem;
+}
+
+.main-body {
    min-height: 40rem;
- }
+}
+
+.rating-widget {
+  cursor: pointer;
+}

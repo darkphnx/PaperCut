@@ -10,3 +10,11 @@
 
 = form_with url: event_vote_path(@event, @event.voting_token) do |f|
   = render @submissions, rating_form: f
+
+  .form-footer
+    .field.is-grouped.is-grouped-right
+      .control.has-icons-left
+        = f.email_field :email_address, class: 'input is-medium', placeholder: 'Enter your email address'
+        %span.icon.is-left
+          %i.fas.fa-envelope
+      .control= f.submit "Submit Your Votes", class: 'button is-primary is-medium'

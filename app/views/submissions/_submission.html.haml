@@ -36,8 +36,6 @@
         - if submission.votes.zero?
           No votes yet!
         - else
-          = pluralize submission.votes, 'vote'
-    .card-footer-item
-      = link_to "Edit", edit_event_submission_path(submission.event, submission)
-    .card-footer-item
-      = link_to "Delete", event_submission_path(submission.event, submission), class: 'has-text-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" }
+          - submission.votes.times do
+            %span.icon.has-text-warning
+              %i.fas.fa-star

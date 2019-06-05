@@ -12,4 +12,21 @@
       = link_to event_vote_url(@event, @event.voting_token), event_vote_url(@event, @event.voting_token)
       &mdash; Share and distribute this link with anyone that you'd like to assist in ranking these submissions.
 
-= render @submissions
+%table.table.is-striped.is-hoverable
+  %thead
+    %tr
+      %th Title
+      %th E-mail
+      %th Votes
+      %th Duration
+
+  %tbody
+    - @submissions.each do |submission|
+      %tr
+        %th
+          = link_to submission.title, event_submission_path(@event, submission)
+          - if submission.first_time_speaker?
+            .tag.is-warning first time speaker
+        %td= submission.email_address
+        %td= submission.votes
+        %td= submission.talk_length_in_minutes

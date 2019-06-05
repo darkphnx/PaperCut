@@ -1,0 +1,12 @@
+- page_title @submission.title
+- page_subtitle "Showing the full details of this submission"
+
+- breadcrumb "My Events", events_path
+- breadcrumb "#{@event.name} Submissions", event_submissions_path(@event)
+- breadcrumb @submission.title
+
+= render @submission
+
+.form-footer
+  .buttons.are-medium.is-right
+    = link_to "Delete Submission", event_submission_path(@event, @submission), class: 'button is-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" }

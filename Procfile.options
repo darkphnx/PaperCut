@@ -1,5 +1,5 @@
 app_name: PaperCut
-root: /opt/rails/papercut
+root: /opt/rails/papercut/current
 pid_root: tmp/pids
 log_root: log
 

@@ -22,6 +22,7 @@
       select.addEventListener('click', this._handleClick.bind(this));
     });
 
+    this.comment.addEventListener('change', this._handleComment.bind(this));
     this.container.addEventListener('mouseleave', this._handleUnhover.bind(this));
   }
 
@@ -47,6 +48,10 @@
     var rating = e.currentTarget.dataset.rating;
 
     this.setRating(rating);
+    this.setCachedRating();
+  }
+
+  RatingWidget.prototype._handleComment = function(e) {
     this.setCachedRating();
   }
 

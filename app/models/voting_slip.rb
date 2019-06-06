@@ -16,7 +16,10 @@ class VotingSlip
       submissions.each do |submission_id, rating|
         submission = event.submissions.find(submission_id)
 
-        submission.submission_votes.create!(voter: voter, weight: rating[:vote_weight], comment: rating[:comment])
+        submission.submission_votes.create!(voter: voter) do |vote|
+          vote.weight = rating[:vote_weight]
+          vote.comment = rating[:comment] if rating[:comment].present?
+        end
       end
     end
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound

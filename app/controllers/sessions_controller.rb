@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
   def create
     if user = User.authenticate(params[:email_address], params[:password])
       self.current_user = user
+      auth_session.persist!
+
       redirect_to events_path
     else
       flash.now[:alert] = "Username/password was not recognised"

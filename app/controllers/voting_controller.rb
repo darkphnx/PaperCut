@@ -25,7 +25,7 @@ class VotingController < ApplicationController
   end
 
   def safe_voting_slip_params
-    params.require(:voting_slip).permit(:email_address, ratings: {})
+    params.require(:voting_slip).permit(:email_address, submissions: {})
   end
 
   def find_event

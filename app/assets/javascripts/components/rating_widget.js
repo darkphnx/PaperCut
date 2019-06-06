@@ -3,9 +3,10 @@
     this.container = container;
 
     this.cacheKey = this.container.dataset.cacheKey;
-    this.selectedIndex = null;
+    this.rating = null;
 
     this.field = container.querySelector('.js-rating-field');
+    this.comment = container.querySelector('.js-rating-comment');
     this.selects = container.querySelectorAll('.js-rating-select');
 
     this.highlight = this.highlight.bind(this);
@@ -33,10 +34,10 @@
   }
 
   RatingWidget.prototype._handleUnhover = function() {
-    if(this.selectedIndex == null) {
+    if(this.rating == null) {
       this.unhighlightAll();
     } else {
-      this.highlight(this.selectedIndex);
+      this.setRating(this.rating);
     }
   }
 
@@ -46,32 +47,39 @@
     var rating = e.currentTarget.dataset.rating;
 
     this.setRating(rating);
-    this.setCachedRating(rating);
+    this.setCachedRating();
   }
 
   RatingWidget.prototype._restoreCachedRating = function() {
     var cachedRating = this.getCachedRating();
 
     if(cachedRating) {
-      this.setRating(cachedRating);
+      this.setRating(cachedRating.rating);
+      this.setComment(cachedRating.comment);
     }
   }
 
   RatingWidget.prototype.setRating = function(rating) {
+    this.rating = rating;
+
     this.field.setAttribute('value', rating);
 
     // Set the selectedIndex to refer to the position of the highlighted item
     var selectsArray = Array.from(this.selects);
-    this.selectedIndex = selectsArray.findIndex((select) => {
+    var selectedIndex = selectsArray.findIndex((select) => {
       return select.dataset.rating == rating;
     });
 
-    this.highlight(this.selectedIndex);
+    this.highlight(selectedIndex);
 
     this.selects.forEach((select) => {
       select.classList.add('has-text-warning');
       select.classList.remove('has-text-dark');
     });
+  }
+
+  RatingWidget.prototype.setComment = function(comment) {
+    this.comment.value = comment;
   }
 
   RatingWidget.prototype.highlight = function(highlightUpToIndex) {
@@ -97,15 +105,18 @@
     });
   }
 
-  RatingWidget.prototype.setCachedRating = function(rating) {
-    window.localStorage.setItem(this.cacheKey, rating.toString());
+  RatingWidget.prototype.setCachedRating = function() {
+    window.localStorage.setItem(this.cacheKey, JSON.stringify({
+      "rating": this.rating,
+      "comment" : this.comment.value
+    }));
   }
 
   RatingWidget.prototype.getCachedRating = function() {
     var cachedScoreString = window.localStorage.getItem(this.cacheKey);
 
     if(cachedScoreString) {
-      return parseInt(cachedScoreString);
+      return JSON.parse(cachedScoreString);
     } else {
       return false;
     }

@@ -27,11 +27,13 @@
   .card-footer
     .card-footer-item
       - if defined?(rating_form)
-        .js-rating.rating-widget{data: { cache_key: "submission-#{submission.id}" }}
-          = rating_form.hidden_field "ratings[#{submission.id}]", value: '0', class: 'js-rating-field'
-          - 5.times do |i|
-            .icon.has-text-dark.js-rating-select{data: { rating: i + 1 }}
-              %i.far.fa-star.js-rating-indicator
+        .js-rating.columns.is-vcentered.rating-widget{data: { cache_key: "submission-#{submission.id}" }}
+          .column.is-narrow
+            = rating_form.hidden_field "submissions[#{submission.id}][vote_weight]", value: '0', class: 'js-rating-field'
+            - 5.times do |i|
+              .icon.has-text-dark.js-rating-select{data: { rating: i + 1 }}
+                %i.far.fa-star.js-rating-indicator
+          .column= rating_form.text_area "submissions[#{submission.id}][comment]", class: 'textarea is-small js-rating-comment', rows: 1, placeholder: "Add any comments about this submission..."
       - else
         - if submission.votes.zero?
           No votes yet!

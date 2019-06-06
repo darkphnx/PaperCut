@@ -38,6 +38,4 @@
         - if submission.votes.zero?
           No votes yet!
         - else
-          - submission.votes.times do
-            %span.icon.has-text-warning
-              %i.fas.fa-star
+          = pluralize submission.votes, 'vote'

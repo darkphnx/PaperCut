@@ -26,8 +26,14 @@
         %tr
           %th
             = link_to submission.title, event_submission_path(@event, submission)
-            - if submission.first_time_speaker?
-              .tag.is-warning first time speaker
+            .is-inline-block
+              .tags
+                - if submission.first_time_speaker?
+                  %span.tag.is-warning first time speaker
+                - if submission.submission_votes.with_comments.exists?
+                  %span.tag.is-info
+                    %span.icon.is-small
+                      %i.far.fa-comments
           %td= mail_to submission.email_address
           %td.has-text-right= submission.talk_length_in_minutes
           %td.has-text-right= submission.votes

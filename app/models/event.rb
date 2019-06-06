@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   belongs_to :user
 
   has_many :submissions
+  has_many :submission_votes, through: :submissions
+  has_many :voters, -> { distinct }, through: :submission_votes
+
   has_one_attached :logo
 
   validates :name, presence: true

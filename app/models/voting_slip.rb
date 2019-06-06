@@ -3,8 +3,9 @@ class VotingSlip
 
   attr_accessor :event, :email_address, :submissions
 
-  validates :email_address, presence: true
+  validates :email_address, email: true
   validates :submissions, presence: true
+  validate :voter_is_unique
 
   # Creates a new voter and attributes votes to them
   def save
@@ -25,5 +26,13 @@ class VotingSlip
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound
     errors.add(:base, "Sorry, couldn't save your results right now.")
     false
+  end
+
+  private
+
+  def voter_is_unique
+    return unless event.voters.where(email_address: email_address).exists?
+
+    errors.add(:email_address, "is already associated with a voting slip for this event")
   end
 end

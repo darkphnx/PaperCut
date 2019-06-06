@@ -1,0 +1,12 @@
+app_name: PaperCut
+root: /opt/rails/papercut
+pid_root: tmp/pids
+log_root: log
+
+env:
+  RAILS_ENV: production
+
+processes:
+  web:
+    restart_mode: usr1
+    term_signal: INT

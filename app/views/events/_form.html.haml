@@ -11,7 +11,8 @@
 
   .field
     = f.label :cfp_open_until, class: 'label'
-    .control= f.date_select :cfp_open_until, class: 'input'
+    .control
+      .select= f.date_select :cfp_open_until, {}, class: 'is-inline-block'
     = f.errors_for :cfp_open_until
 
   .field

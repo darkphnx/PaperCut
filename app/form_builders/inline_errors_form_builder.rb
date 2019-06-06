@@ -1,20 +1,36 @@
 class InlineErrorsFormBuilder < ActionView::Helpers::FormBuilder
   ERROR_CSS_CLASS = 'is-danger'.freeze
 
-  def text_field(method, options = {})
-    if attribute_has_error?(method)
-      options[:class] = css_classes_with_error(options[:class])
-    end
+  # Add an error class to the following helpers if that attribute has an error present
+  %I[text_field password_field email_field].each do |form_helper_name|
+    define_method(form_helper_name) do |method, options|
+      options ||= {}
 
-    super(method, options)
+      if attribute_has_error?(method)
+        options[:class] = css_classes_with_error(options[:class])
+      end
+
+      super(method, options)
+    end
   end
 
-  def password_field(method, options = {})
-    if attribute_has_error?(method)
-      options[:class] = css_classes_with_error(options[:class])
-    end
+  def date_select(method, options = {}, html_options = {})
+    options.reverse_merge!(field_name: method.to_s,
+                           prefix: @object_name,
+                           include_position: true)
 
-    super(method, options)
+    date_selector = ActionView::Helpers::DateTimeSelector.new(object.send(method), options, html_options)
+    [
+      @template.content_tag(:div, class: 'select') do
+        date_selector.select_year
+      end,
+      @template.content_tag(:div, class: 'select') do
+        date_selector.select_month
+      end,
+      @template.content_tag(:div, class: 'select') do
+        date_selector.select_day
+      end
+    ].join(' ').html_safe
   end
 
   def errors_for(attribute)

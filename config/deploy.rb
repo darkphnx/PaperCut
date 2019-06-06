@@ -21,8 +21,8 @@ set :deploy_to, "/opt/rails/papercut"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml"
-4
+append :linked_files, "config/database.yml", "Procfile.local"
+
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets"
 

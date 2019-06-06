@@ -21,7 +21,7 @@ set :deploy_to, "/opt/rails/papercut"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "Procfile.local"
+append :linked_files, "config/database.yml", "config/master.key"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets"
@@ -37,6 +37,8 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+set :assets_roles, %w[app]
 
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip

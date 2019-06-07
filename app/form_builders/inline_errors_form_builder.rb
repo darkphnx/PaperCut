@@ -17,7 +17,8 @@ class InlineErrorsFormBuilder < ActionView::Helpers::FormBuilder
   def date_select(method, options = {}, html_options = {})
     options.reverse_merge!(field_name: method.to_s,
                            prefix: @object_name,
-                           include_position: true)
+                           include_position: true,
+                           start_year: Time.current.year)
 
     date_selector = ActionView::Helpers::DateTimeSelector.new(object.send(method), options, html_options)
     [

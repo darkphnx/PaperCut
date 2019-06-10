@@ -9,7 +9,6 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_tag "", defer: true, src: "https://use.fontawesome.com/releases/v5.3.1/js/all.js"
   %body
-
     %section.hero.is-fullheight.is-primary.is-bold
       .hero-head
         = render 'layouts/navbar'
@@ -28,3 +27,9 @@
                 Simple curation for your Call for Papers
 
             .column= yield
+      .hero-foot
+        .container
+          .content
+            %h6.subtitle.is-6
+              Built by #{link_to "@darkphnx", "https://twitter.com/darkphnx"}.
+              Source code available on #{link_to "GitHub", "https://github.com/darkphnx/papercut"}.

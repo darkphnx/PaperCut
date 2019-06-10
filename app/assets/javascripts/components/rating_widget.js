@@ -3,7 +3,7 @@
     this.container = container;
 
     this.cacheKey = this.container.dataset.cacheKey;
-    this.rating = null;
+    this.rating = 0;
 
     this.field = container.querySelector('.js-rating-field');
     this.comment = container.querySelector('.js-rating-comment');
@@ -35,10 +35,10 @@
   }
 
   RatingWidget.prototype._handleUnhover = function() {
-    if(this.rating == null) {
-      this.unhighlightAll();
-    } else {
+    if(this.rating > 0) {
       this.setRating(this.rating);
+    } else {
+      this.unhighlightAll();
     }
   }
 
@@ -47,7 +47,13 @@
 
     var rating = e.currentTarget.dataset.rating;
 
-    this.setRating(rating);
+    // Unset the rating if the user clicks on an already highlighted star
+    if(rating == this.rating) {
+      this.setRating(0);
+    } else {
+      this.setRating(rating);
+    }
+
     this.setCachedRating();
   }
 
@@ -77,10 +83,17 @@
 
     this.highlight(selectedIndex);
 
-    this.selects.forEach((select) => {
-      select.classList.add('has-text-warning');
-      select.classList.remove('has-text-dark');
-    });
+    if(rating > 0) {
+      this.selects.forEach((select) => {
+        select.classList.add('has-text-warning');
+        select.classList.remove('has-text-dark');
+      });
+    } else {
+      this.selects.forEach((select) => {
+        select.classList.add('has-text-dark');
+        select.classList.remove('has-text-warning');
+      });
+    }
   }
 
   RatingWidget.prototype.setComment = function(comment) {

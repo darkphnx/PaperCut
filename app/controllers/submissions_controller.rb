@@ -33,6 +33,6 @@ class SubmissionsController < ApplicationController
   end
 
   def find_submission
-    @submission = @event.submissions.find(params[:id]) if params[:id]
+    @submission = @event.submissions.includes(:submission_votes).find(params[:id]) if params[:id]
   end
 end

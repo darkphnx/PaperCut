@@ -7,23 +7,24 @@
 
 = render @submission
 
-.comments.box
-  - @submission.submission_votes.each do |vote|
-    %article.media
-      .media-left.comment-rating
-        - vote.weight.times do
-          .icon.has-text-warning
-            %i.fas.fa-star
+- if @submission.submission_votes.exists?
+  .comments.box
+    - @submission.submission_votes.each do |vote|
+      %article.media
+        .media-left.comment-rating
+          - vote.weight.times do
+            .icon.has-text-warning
+              %i.fas.fa-star
 
-      .media-content
-        - if vote.comment?
-          .content
-            = simple_format= vote.comment
+        .media-content
+          - if vote.comment?
+            .content
+              = simple_format= vote.comment
 
-        %small
-          = vote.voter.email_address
-          ·
-          = vote.created_at.to_s(:short)
+          %small
+            = vote.voter.email_address
+            ·
+            = vote.created_at.to_s(:short)
 
 .form-footer
   .buttons.are-medium.is-right

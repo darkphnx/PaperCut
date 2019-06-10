@@ -33,9 +33,7 @@
             - 5.times do |i|
               .icon.has-text-dark.js-rating-select{data: { rating: i + 1 }}
                 %i.far.fa-star.js-rating-indicator
-
           .column= rating_form.text_area "submissions[#{submission.id}][comment]", class: 'textarea is-small js-rating-comment', rows: 1, placeholder: "Add any comments about this submission..."
-          .column.is-narrow= link_to "Clear", "#", class: 'button is-dark is-small js-rating-reset'
       - else
         - if submission.votes.zero?
           No votes yet!

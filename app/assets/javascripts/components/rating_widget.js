@@ -7,7 +7,6 @@
 
     this.field = container.querySelector('.js-rating-field');
     this.comment = container.querySelector('.js-rating-comment');
-    this.resetButton = container.querySelector('.js-rating-reset');
     this.selects = container.querySelectorAll('.js-rating-select');
 
     this.highlight = this.highlight.bind(this);
@@ -25,7 +24,6 @@
 
     this.comment.addEventListener('change', this._handleComment.bind(this));
     this.container.addEventListener('mouseleave', this._handleUnhover.bind(this));
-    this.resetButton.addEventListener('click', this._handleReset.bind(this));
   }
 
   RatingWidget.prototype._handleHover = function(e) {
@@ -66,14 +64,6 @@
     }
   }
 
-  RatingWidget.prototype._handleReset = function(e) {
-    e.preventDefault();
-
-    this.unsetRating(0);
-    this.setComment(null);
-    this.deleteCachedRating();
-  }
-
   RatingWidget.prototype.setRating = function(rating) {
     this.rating = rating;
 
@@ -90,15 +80,6 @@
     this.selects.forEach((select) => {
       select.classList.add('has-text-warning');
       select.classList.remove('has-text-dark');
-    });
-  }
-
-  RatingWidget.prototype.unsetRating = function() {
-    this.setRating(0);
-
-    this.selects.forEach((select) => {
-      select.classList.add('has-text-dark');
-      select.classList.remove('has-text-warning');
     });
   }
 
@@ -127,10 +108,6 @@
       icon.classList.add('far');
       icon.classList.remove('fas');
     });
-  }
-
-  RatingWidget.prototype.deleteCachedRating = function() {
-    window.localStorage.removeItem(this.cacheKey);
   }
 
   RatingWidget.prototype.setCachedRating = function() {

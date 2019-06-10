@@ -40,4 +40,6 @@
         - if submission.votes.zero?
           No votes yet!
         - else
-          = pluralize submission.votes, 'vote'
+          Average Rating:
+          = submission.average_rating
+          (#{pluralize submission.votes, 'vote'} from #{pluralize submission.submission_votes.count, 'person'})

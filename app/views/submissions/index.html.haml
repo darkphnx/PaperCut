@@ -18,8 +18,8 @@
       %tr
         %th Title
         %th E-mail
-        %th.has-text-right Duration
-        %th.has-text-right Votes
+        %th.has-text-right Duration (mins)
+        %th.has-text-right Avg. Rating
 
     %tbody
       - @submissions.each do |submission|
@@ -36,7 +36,7 @@
                       %i.far.fa-comments
           %td= mail_to submission.email_address
           %td.has-text-right= submission.talk_length_in_minutes
-          %td.has-text-right= submission.votes
+          %td.has-text-right= submission.average_rating
 
 - else
   .box.no-data

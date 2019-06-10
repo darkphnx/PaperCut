@@ -9,11 +9,15 @@ class Submission < ApplicationRecord
   scope :by_random, ->(seed) { order(Arel.sql("rand(#{seed})")) }
 
   def self.by_popularity
-    left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("SUM(submission_votes.weight) DESC"))
+    left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("AVG(submission_votes.weight) DESC"))
   end
 
   def votes
     submission_votes.sum(:weight)
+  end
+
+  def average_rating
+    submission_votes.average(:weight)
   end
 
   def self.from_csv(event, csv_io)

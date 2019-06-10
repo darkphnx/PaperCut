@@ -15,8 +15,6 @@ class VotingSlip
       voter = Voter.create!(email_address: email_address)
 
       submissions.each do |submission_id, rating|
-        next if rating[:vote_weight] == "0" && rating[:comment].blank? # Don't store zero star reviews
-
         submission = event.submissions.find(submission_id)
 
         submission.submission_votes.create!(voter: voter) do |vote|

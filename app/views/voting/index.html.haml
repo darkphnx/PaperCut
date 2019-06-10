@@ -8,6 +8,32 @@
       abstract for each talk and then rate it 0 &mdash; 5 stars depending on how much you'd like to see that talk.
       At the end, of the page, pop in your email address and hit submit!
 
+    %ul.voting-guide
+      %li
+        %span.has-text-weight-semibold 0 stars
+        &mdash;
+        Not suitable
+      %li
+        %span.has-text-weight-semibold 1 star
+        &mdash;
+        Vague interest
+      %li
+        %span.has-text-weight-semibold 2 stars
+        &mdash;
+        Has some potential
+      %li
+        %span.has-text-weight-semibold 3 stars
+        &mdash;
+        Should be quite good
+      %li
+        %span.has-text-weight-semibold 4 stars
+        &mdash;
+        A very good match
+      %li
+        %span.has-text-weight-semibold 5 stars
+        &mdash;
+        Absolutely unmissable
+
 = form_with model: @voting_slip, url: event_vote_path(@event, @event.voting_token), builder: InlineErrorsFormBuilder do |f|
   - unless f.object.errors.empty?
     .notification.is-danger

@@ -36,7 +36,7 @@
                       %i.far.fa-comments
           %td= mail_to submission.email_address
           %td.has-text-right= submission.talk_length_in_minutes
-          %td.has-text-right= submission.average_rating
+          %td.has-text-right= submission.average_rating.round(1)
 
 - else
   .box.no-data

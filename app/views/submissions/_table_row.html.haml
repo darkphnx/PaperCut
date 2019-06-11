@@ -1,0 +1,24 @@
+%tr
+  %th.position.has-text-right
+  %th
+    = link_to submission.title, event_submission_path(@event, submission)
+    .is-inline-block
+      .tags
+        - if submission.first_time_speaker?
+          %span.tag.is-warning first time speaker
+        - if submission.submission_votes.with_comments.exists?
+          %span.tag.is-info
+            %span.icon.is-small
+              %i.far.fa-comments
+  %td= mail_to submission.email_address
+  %td.has-text-right= submission.talk_length_in_minutes
+  %td.has-text-right= submission.average_rating.round(1)
+  %td
+    - if submission.shortlisted?
+      = link_to event_submission_path(@event, submission), title: "Remove from Shortlist", class: 'button is-danger is-small' do
+        %span.icon
+          %i.far.fa-thumbs-down
+    - else
+      = link_to event_submission_path(@event, submission), title: "Add to Shortlist", class: 'button is-primary is-small' do
+        %span.icon
+          %i.far.fa-thumbs-up

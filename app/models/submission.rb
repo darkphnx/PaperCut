@@ -7,6 +7,8 @@ class Submission < ApplicationRecord
   has_many :voters, through: :submission_votes
 
   scope :by_random, ->(seed) { order(Arel.sql("rand(#{seed})")) }
+  scope :shortlisted, -> { where(shortlisted: true) }
+  scope :not_shortlisted, -> { where(shortlisted: false) }
 
   def self.by_popularity
     left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("AVG(submission_votes.weight) DESC"))

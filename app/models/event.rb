@@ -20,6 +20,10 @@ class Event < ApplicationRecord
     cfp_open_until.future?
   end
 
+  def remaining_slots
+    available_slots - submissions.shortlisted.count
+  end
+
   private
 
   def generate_voting_token

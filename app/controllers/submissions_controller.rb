@@ -20,6 +20,16 @@ class SubmissionsController < ApplicationController
     redirect_to event_submissions_path(@event), notice: "Submissions for #{@event.name} have been processed successfully"
   end
 
+  def update
+    respond_to do |wants|
+      if @submission.update(safe_submission_params)
+        wants.html { redirect_to event_submission_path(@event, @submission) }
+      else
+        wants.html { redirect_to event_submission_path(@event, @submission), alert: "Couldn't update submission right now" }
+      end
+    end
+  end
+
   def destroy
     @submission.destroy
 
@@ -27,6 +37,10 @@ class SubmissionsController < ApplicationController
   end
 
   private
+
+  def safe_submission_params
+    params.require(:submission).permit(:shortlisted)
+  end
 
   def find_event
     @event = current_user.events.find(params[:event_id])

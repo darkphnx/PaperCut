@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   validates :name, presence: true
   validates :cfp_open_until, presence: true
   validates :date_of_event, presence: true, future: true
+  validates :available_slots, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 50 }
 
   before_create :generate_voting_token
 

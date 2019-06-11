@@ -6,7 +6,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.events.build
+    @event = current_user.events.build(available_slots: 10, cfp_open_until: 1.month.from_now,
+                                       date_of_event: 3.months.from_now)
   end
 
   def create
@@ -38,7 +39,7 @@ class EventsController < ApplicationController
   private
 
   def safe_event_params
-    params.require(:event).permit(:name, :website, :cfp_open_until, :date_of_event, :logo, :voting_open)
+    params.require(:event).permit(:name, :website, :available_slots, :cfp_open_until, :date_of_event, :logo)
   end
 
   def find_event

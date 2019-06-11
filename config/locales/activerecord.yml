@@ -4,3 +4,4 @@ en:
       event:
         name: Event name
         cfp_open_until: Call for papers open until
+        available_slots: Available speaking slots

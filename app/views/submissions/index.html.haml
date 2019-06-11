@@ -13,9 +13,10 @@
         = link_to event_vote_url(@event, @event.voting_token), event_vote_url(@event, @event.voting_token)
         &mdash; Share and distribute this link with anyone that you'd like to assist in ranking these submissions.
 
-  %table.table.is-striped.is-hoverable
+  %table.table.is-striped.is-hoverable{class: "available-slots-#{@event.available_slots}"}
     %thead
       %tr
+        %th.has-text-right #
         %th Title
         %th E-mail
         %th.has-text-right Duration (mins)
@@ -24,6 +25,7 @@
     %tbody
       - @submissions.each do |submission|
         %tr
+          %th.position.has-text-right
           %th
             = link_to submission.title, event_submission_path(@event, submission)
             .is-inline-block

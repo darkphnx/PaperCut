@@ -50,3 +50,23 @@
 .voting-guide {
   margin-top: 1rem;
 }
+
+@for $availableSlots from 1 to 50 {
+  .available-slots-#{$availableSlots} {
+    // Add a row number to each of the top X rows
+    tbody tr:nth-child(-n+#{$availableSlots}) {
+      counter-increment: rowNumber;
+
+      th.position::before {
+        content: counter(rowNumber);
+      }
+    }
+
+    // Add a bigger bottom border to the last top X row
+    tbody tr:nth-child(#{$availableSlots}) {
+      td, th {
+        border-bottom-width: 2px;
+      }
+    }
+  }
+}

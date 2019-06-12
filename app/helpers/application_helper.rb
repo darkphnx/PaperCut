@@ -40,4 +40,24 @@ module ApplicationHelper
   def breadcrumb(title, link = false)
     breadcrumbs << OpenStruct.new(title: title, link: link)
   end
+
+  # Builds a pie chart representation of minutes in an hour
+  def clock_chart_svg(minutes, options = {})
+    options.reverse_merge!(class: '')
+
+    minutes_proportion = minutes / 60.0
+
+    title = pluralize(minutes, 'minute')
+
+    content_tag(:figure, title: title) do
+      content_tag(:svg, class: ['clock', options[:class]], alt: title, viewBox: '0 0 100 100') do
+        circle_radius = 50
+        circle_circumference = 2 * Math::PI * circle_radius
+        stroke_circumference = minutes_proportion * circle_circumference
+
+        content_tag(:circle, nil, r: circle_radius, cx: 50, cy: 50, class: 'clock-face',
+                                  style: "stroke-dasharray: #{stroke_circumference} #{circle_circumference}")
+      end
+    end
+  end
 end

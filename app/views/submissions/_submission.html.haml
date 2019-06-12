@@ -10,9 +10,11 @@
               %i.fas.fa-bullhorn
           .media-content
             .content= simple_format submission.abstract
-            .is-size-7.has-text-right
-              %progress.progress.is-info{value: submission.talk_length_in_minutes, max: 40}
-              = pluralize submission.talk_length_in_minutes, 'minute'
+            .submission-duration
+              = clock_chart_svg submission.talk_length_in_minutes
+              %span.is-size-7
+                = pluralize submission.talk_length_in_minutes, 'minute'
+                duration
 
       .column
         .media

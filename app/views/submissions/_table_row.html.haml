@@ -11,7 +11,7 @@
             %span.icon.is-small
               %i.far.fa-comments
   %td= mail_to submission.email_address
-  %td.has-text-right= submission.talk_length_in_minutes
+  %td= clock_chart_svg submission.talk_length_in_minutes, class: 'is-margin-auto'
   %td.has-text-right= submission.average_rating.round(1)
   %td
     - if submission.shortlisted?

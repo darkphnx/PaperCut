@@ -16,6 +16,10 @@
 
 @import "bulma";
 
+.is-margin-auto {
+  margin: 0 auto !important;
+}
+
 .card ~ .card {
    margin-top: 1.5rem;
 }
@@ -47,10 +51,6 @@
   text-align: center;
 }
 
-.voting-guide {
-  margin-top: 1rem;
-}
-
 tbody.shortlist {
   tr {
     counter-increment: rowNumber;
@@ -78,6 +78,30 @@ tbody + tbody {
   border-top: dotted 2px $grey-lighter;
 }
 
-td.shortlist-intro {
-  padding: 5rem 0;
+.clock {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: rotate(-90deg);
+
+  background: $grey-lighter;
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.clock-face {
+  fill: $grey-lighter;
+  stroke: $cyan;
+  stroke-width: 100;
+  //stroke-dasharray: 40 314; // 314 is ~ 2 * pi (50) * circle radius (50)
+}
+
+.submission-duration {
+  display: flex;
+  align-items: center;
+
+  .clock {
+    margin-right: 0.75rem;
+  }
 }

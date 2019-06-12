@@ -7,22 +7,22 @@
         .media
           .media-left
             %span.icon
-              %i.fas.fa-user
-          .media-content
-            .content= simple_format submission.biography
-            - if submission.first_time_speaker?
-              .tag.is-warning first time speaker
-
-      .column
-        .media
-          .media-left
-            %span.icon
               %i.fas.fa-bullhorn
           .media-content
             .content= simple_format submission.abstract
             .is-size-7.has-text-right
               %progress.progress.is-info{value: submission.talk_length_in_minutes, max: 40}
               = pluralize submission.talk_length_in_minutes, 'minute'
+
+      .column
+        .media
+          .media-left
+            %span.icon
+              %i.fas.fa-user
+          .media-content
+            .content= simple_format submission.biography
+            - if submission.first_time_speaker?
+              .tag.is-warning first time speaker
 
   .card-footer
     .card-footer-item

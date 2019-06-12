@@ -13,19 +13,7 @@
         = link_to event_vote_url(@event, @event.voting_token), event_vote_url(@event, @event.voting_token)
         &mdash; Share and distribute this link with anyone that you'd like to assist in ranking these submissions.
 
-  %table.table.is-striped.is-hoverable{class: "available-slots-#{@event.available_slots}"}
-    %thead
-      %tr
-        %th.has-text-right #
-        %th Title
-        %th E-mail
-        %th.has-text-right Duration (mins)
-        %th.has-text-right Avg. Rating
-        %th
-
-    %tbody
-      = render collection: @submissions.shortlisted, as: :submission, partial: 'table_row'
-      = render collection: @submissions.not_shortlisted, as: :submission, partial: 'table_row'
+  .js-submission-table= render 'table', event: @event, submissions: @submissions
 
 - else
   .box.no-data

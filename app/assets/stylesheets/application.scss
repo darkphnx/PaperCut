@@ -51,22 +51,33 @@
   margin-top: 1rem;
 }
 
-@for $availableSlots from 1 to 50 {
-  .available-slots-#{$availableSlots} {
-    // Add a row number to each of the top X rows
-    tbody tr:nth-child(-n+#{$availableSlots}) {
-      counter-increment: rowNumber;
+tbody.shortlist {
+  tr {
+    counter-increment: rowNumber;
 
-      th.position::before {
-        content: counter(rowNumber);
-      }
+    th.position::before {
+      content: counter(rowNumber);
     }
+  }
+}
 
-    // Add a bigger bottom border to the last top X row
-    tbody tr:nth-child(#{$availableSlots}) {
-      td, th {
-        border-bottom-width: 2px;
+@for $availableSlots from 1 to 50 {
+  $lastSubmission: $availableSlots + 1;
+
+  tbody.available-slots-#{$availableSlots} {
+    tr:nth-child(n+#{$lastSubmission}) {
+      th.position::before {
+        color: $grey-light;
       }
     }
   }
+}
+
+
+tbody + tbody {
+  border-top: dotted 2px $grey-lighter;
+}
+
+td.shortlist-intro {
+  padding: 5rem 0;
 }

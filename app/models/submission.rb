@@ -22,6 +22,14 @@ class Submission < ApplicationRecord
     submission_votes.average(:weight)
   end
 
+  def shortlist!
+    self.update(shortlisted: true)
+  end
+
+  def unshortlist!
+    self.update(shortlisted: false)
+  end
+
   def self.from_csv(event, csv_io)
     csv = CSV.new(csv_io, headers: true, return_headers: false)
 

@@ -32,4 +32,9 @@ document.addEventListener("DOMContentLoaded", function(){
   notifications.forEach(function(notification) {
     new Notification(notification);
   });
+
+  var submissionTables = document.querySelectorAll('.js-submission-table');
+  submissionTables.forEach(function(submissionTable) {
+    new SubmissionTable(submissionTable);
+  })
 });

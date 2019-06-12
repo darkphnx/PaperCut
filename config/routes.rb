@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :submissions
+    resources :submissions do
+      post :shortlist, to: 'shortlist#create'
+      delete :shortlist, to: 'shortlist#destroy'
+    end
 
     get 'vote/:voting_token', to: 'voting#index', as: 'vote'
     post 'vote/:voting_token', to: 'voting#create'

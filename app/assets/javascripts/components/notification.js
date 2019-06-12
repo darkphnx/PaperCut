@@ -4,8 +4,6 @@
 
     this.closeButton = container.querySelector('.js-notification-close');
 
-    console.log('wotcha')
-
     this._bindEvents();
   }
 

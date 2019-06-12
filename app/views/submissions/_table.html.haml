@@ -1,0 +1,15 @@
+%table.table.is-striped.is-hoverable
+  %thead
+    %tr
+      %th.has-text-right #
+      %th Title
+      %th E-mail
+      %th.has-text-right Duration (mins)
+      %th.has-text-right Avg. Rating
+      %th
+
+  - if submissions.shortlisted.exists?
+    %tbody.shortlist{class: "available-slots-#{event.available_slots}"}
+      = render collection: submissions.shortlisted, as: :submission, partial: 'submissions/table_row'
+  %tbody
+    = render collection: submissions.not_shortlisted, as: :submission, partial: 'submissions/table_row'

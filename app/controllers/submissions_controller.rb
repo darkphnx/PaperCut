@@ -21,12 +21,10 @@ class SubmissionsController < ApplicationController
   end
 
   def update
-    respond_to do |wants|
-      if @submission.update(safe_submission_params)
-        wants.html { redirect_to event_submission_path(@event, @submission) }
-      else
-        wants.html { redirect_to event_submission_path(@event, @submission), alert: "Couldn't update submission right now" }
-      end
+    if @submission.update(safe_submission_params)
+      redirect_to event_submission_path(@event, @submission)
+    else
+      redirect_to event_submission_path(@event, @submission), alert: "Couldn't update submission right now"
     end
   end
 

@@ -28,12 +28,18 @@
 
 .form-footer
   .buttons.is-right
-    = form_with model: @submission, url: [@event, @submission] do |f|
-      - if @submission.shortlisted?
-        = f.hidden_field :shortlisted, value: false
-        = f.submit "Remove from Shortlist", class: 'button is-warning'
-      - else
-        = f.hidden_field :shortlisted, value: true
-        = f.submit "Add to Shortlist", class: 'button is-primary'
+    - if @submission.shortlisted?
+      = link_to event_submission_shortlist_path(@event, @submission), class: 'button is-warning', data: { method: :delete } do
+        %span.icon
+          %i.far.fa-thumbs-down
+        %span Remove from Shortlist
+    - else
+      = link_to event_submission_shortlist_path(@event, @submission), class: 'button is-primary', data: { method: :post } do
+        %span.icon
+          %i.far.fa-thumbs-up
+        %span Add to Shortlist
 
-    = link_to "Delete", event_submission_path(@event, @submission), class: 'button is-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" }
+    = link_to event_submission_path(@event, @submission), class: 'button is-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" } do
+      %span.icon
+        %i.fas.fa-trash
+      %span Delete

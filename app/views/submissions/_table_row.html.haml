@@ -1,7 +1,7 @@
 %tr
   %th.position.has-text-right
   %th
-    = link_to submission.title, event_submission_path(@event, submission)
+    = link_to submission.title, event_submission_path(submission.event, submission)
     .is-inline-block
       .tags
         - if submission.first_time_speaker?
@@ -15,10 +15,10 @@
   %td.has-text-right= submission.average_rating.round(1)
   %td
     - if submission.shortlisted?
-      = link_to event_submission_path(@event, submission), title: "Remove from Shortlist", class: 'button is-danger is-small' do
+      = link_to event_submission_shortlist_path(submission.event, submission), title: "Remove from Shortlist", class: 'button is-danger is-small', data: { method: :delete, type: :json, remote: true } do
         %span.icon
           %i.far.fa-thumbs-down
     - else
-      = link_to event_submission_path(@event, submission), title: "Add to Shortlist", class: 'button is-primary is-small' do
+      = link_to event_submission_shortlist_path(submission.event, submission), title: "Add to Shortlist", class: 'button is-primary is-small', data: { method: :post, type: :json, remote: true } do
         %span.icon
           %i.far.fa-thumbs-up

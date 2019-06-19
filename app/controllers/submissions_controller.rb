@@ -2,7 +2,7 @@ class SubmissionsController < ApplicationController
   before_action :find_event, :find_submission
 
   def index
-    @submissions = @event.submissions.by_popularity
+    @submissions = @event.submissions
   end
 
   def show

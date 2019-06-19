@@ -22,6 +22,11 @@ class Submission < ApplicationRecord
     left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("AVG(submission_votes.weight) DESC"))
   end
 
+  def self.by_shortlist_status
+    # DESC so that null entries fall to the bottom
+    order(Arel.sql("FIELD(shortlist_status, 'unavailable', 'backup', 'invited', 'accepted') DESC"))
+  end
+
   def votes
     submission_votes.sum(:weight)
   end

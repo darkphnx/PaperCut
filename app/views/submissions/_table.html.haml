@@ -10,6 +10,6 @@
 
   - if submissions.shortlisted.exists?
     %tbody.shortlist{class: "available-slots-#{event.available_slots}"}
-      = render collection: submissions.shortlisted, as: :submission, partial: 'submissions/table_row'
+      = render collection: submissions.shortlisted.by_shortlist_status.by_popularity, as: :submission, partial: 'submissions/table_row'
   %tbody
-    = render collection: submissions.not_shortlisted, as: :submission, partial: 'submissions/table_row'
+    = render collection: submissions.not_shortlisted.by_popularity, as: :submission, partial: 'submissions/table_row'

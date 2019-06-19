@@ -36,7 +36,7 @@ class ShortlistController < ApplicationController
   private
 
   def render_submissions_table
-    @submissions = @event.submissions.by_popularity
+    @submissions = @event.submissions
 
     render_to_string partial: 'submissions/table', locals: { event: @event, submissions: @submissions }, layout: false,
       formats: [:html]

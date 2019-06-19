@@ -1,6 +1,8 @@
 require 'csv'
 
 class Submission < ApplicationRecord
+  SHORTLIST_STATUSES = %w[backup invited accepted unavailable].freeze
+
   belongs_to :event
 
   has_many :submission_votes, dependent: :destroy
@@ -9,6 +11,12 @@ class Submission < ApplicationRecord
   scope :by_random, ->(seed) { order(Arel.sql("rand(#{seed})")) }
   scope :shortlisted, -> { where(shortlisted: true) }
   scope :not_shortlisted, -> { where(shortlisted: false) }
+
+  validates :email_address, presence: true, email: true
+  validates :biography, presence: true
+  validates :title, presence: true
+  validates :abstract, presence: true
+  validates :shortlist_status, inclusion: { in: SHORTLIST_STATUSES }
 
   def self.by_popularity
     left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("AVG(submission_votes.weight) DESC"))

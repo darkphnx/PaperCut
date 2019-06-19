@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_131225) do
+ActiveRecord::Schema.define(version: 2019_06_19_105721) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_131225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "shortlisted", default: false
+    t.string "shortlist_status"
     t.index ["event_id"], name: "index_submissions_on_event_id"
   end
 

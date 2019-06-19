@@ -61,14 +61,18 @@ module ApplicationHelper
     end
   end
 
-  SHORTLIST_STATUS_COLOURS = {
-    'invited' => 'is-warning',
-    'backup' => 'is-dark',
-    'accepted' => 'is-primary',
-    'unavailable' => 'is-danger'
+  SHORTLIST_STATUS = {
+    'invited' => { class: 'is-warning', icon: 'fas fa-envelope-open-text' },
+    'backup' => { class: 'is-dark', icon: 'fas fa-life-ring' },
+    'accepted' => { class: 'is-primary', icon: 'fas fa-check-circle' },
+    'unavailable' => { class: 'is-danger', icon: 'fas fa-times-circle' }
   }.freeze
 
-  def shortlist_status_class(status)
-    SHORTLIST_STATUS_COLOURS[status]
+  def shortlist_status_tag(status)
+    props = SHORTLIST_STATUS[status]
+
+    content_tag(:span, class: ['tag', props[:class]], title: status) do
+      content_tag(:i, nil, class: props[:icon])
+    end
   end
 end

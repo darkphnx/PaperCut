@@ -4,6 +4,8 @@
     = link_to submission.title, event_submission_path(submission.event, submission)
     .is-inline-block
       .tags
+        - if submission.shortlisted? && submission.shortlist_status.present?
+          %span.tag{class: shortlist_status_class(submission.shortlist_status)}= submission.shortlist_status
         - if submission.first_time_speaker?
           %span.tag.is-warning first time speaker
         - if submission.submission_votes.with_comments.exists?

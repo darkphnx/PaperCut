@@ -37,4 +37,9 @@ document.addEventListener("DOMContentLoaded", function(){
   submissionTables.forEach(function(submissionTable) {
     new SubmissionTable(submissionTable);
   })
+
+  var shortListStatus = document.querySelectorAll('.js-shortlist-status');
+  shortListStatus.forEach(function(status) {
+    new ShortlistStatus(status);
+  });
 });

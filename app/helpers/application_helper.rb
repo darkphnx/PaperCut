@@ -60,4 +60,15 @@ module ApplicationHelper
       end
     end
   end
+
+  SHORTLIST_STATUS_COLOURS = {
+    'invited' => 'is-warning',
+    'backup' => 'is-dark',
+    'accepted' => 'is-primary',
+    'unavailable' => 'is-error'
+  }.freeze
+
+  def shortlist_status_class(status)
+    SHORTLIST_STATUS_COLOURS[status]
+  end
 end

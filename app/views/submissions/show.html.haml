@@ -26,20 +26,30 @@
             ·
             = vote.created_at.to_s(:short)
 
-.form-footer
-  .buttons.is-right
+.level
+  .level-left
     - if @submission.shortlisted?
-      = link_to event_submission_shortlist_path(@event, @submission), class: 'button is-warning', data: { method: :delete } do
-        %span.icon
-          %i.far.fa-thumbs-down
-        %span Remove from Shortlist
-    - else
-      = link_to event_submission_shortlist_path(@event, @submission), class: 'button is-primary', data: { method: :post } do
-        %span.icon
-          %i.far.fa-thumbs-up
-        %span Add to Shortlist
+      .level-item
+        = form_with model: @submission, url: event_submission_path(@event, @submission), class: 'js-shortlist-status' do |f|
+          .field
+            .control
+              .select= f.select :shortlist_status, options_for_select(Submission::SHORTLIST_STATUSES), prompt: "Select a shortlist status..."
 
-    = link_to event_submission_path(@event, @submission), class: 'button is-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" } do
-      %span.icon
-        %i.fas.fa-trash
-      %span Delete
+  .level-right
+    .level-item
+      - if @submission.shortlisted?
+        = link_to event_submission_shortlist_path(@event, @submission), class: 'button is-warning', data: { method: :delete } do
+          %span.icon
+            %i.far.fa-thumbs-down
+          %span Remove from Shortlist
+      - else
+        = link_to event_submission_shortlist_path(@event, @submission), class: 'button is-primary', data: { method: :post } do
+          %span.icon
+            %i.far.fa-thumbs-up
+          %span Add to Shortlist
+
+    .level-item
+      = link_to event_submission_path(@event, @submission), class: 'button is-danger', data: { method: :delete, confirm: "Are you sure you want to delete this submission?" } do
+        %span.icon
+          %i.fas.fa-trash
+        %span Delete

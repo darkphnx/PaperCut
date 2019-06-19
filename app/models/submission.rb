@@ -16,7 +16,7 @@ class Submission < ApplicationRecord
   validates :biography, presence: true
   validates :title, presence: true
   validates :abstract, presence: true
-  validates :shortlist_status, inclusion: { in: SHORTLIST_STATUSES }
+  validates :shortlist_status, inclusion: { in: SHORTLIST_STATUSES, allow_blank: true }
 
   def self.by_popularity
     left_outer_joins(:submission_votes).group('submissions.id').order(Arel.sql("AVG(submission_votes.weight) DESC"))

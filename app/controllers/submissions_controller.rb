@@ -37,7 +37,7 @@ class SubmissionsController < ApplicationController
   private
 
   def safe_submission_params
-    params.require(:submission).permit(:shortlisted)
+    params.require(:submission).permit(:shortlist_status)
   end
 
   def find_event

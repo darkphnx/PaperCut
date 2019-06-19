@@ -65,7 +65,7 @@ module ApplicationHelper
     'invited' => 'is-warning',
     'backup' => 'is-dark',
     'accepted' => 'is-primary',
-    'unavailable' => 'is-error'
+    'unavailable' => 'is-danger'
   }.freeze
 
   def shortlist_status_class(status)

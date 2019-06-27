@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :events
 
   validates :name, presence: true
-  validates :email_address, email: true
+  validates :email_address, presence: true, email: true
 
   def self.authenticate(email_address, password)
     find_by(email_address: email_address).try(:authenticate, password)

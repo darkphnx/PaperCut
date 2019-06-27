@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :event, class: Event do
+  factory :event do
     name { "My Fantastic Conference" }
     cfp_open_until { Time.now.utc + 1.hour }
     date_of_event { Time.now.utc + 1.week }

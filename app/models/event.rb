@@ -12,7 +12,7 @@ class Event < ApplicationRecord
   validates :date_of_event, presence: true, future: true
   validates :available_slots, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 50 }
 
-  before_create :generate_voting_token
+  before_validation :generate_voting_token
 
   scope :by_upcoming, -> { order('cfp_open_until') }
 
@@ -20,13 +20,9 @@ class Event < ApplicationRecord
     cfp_open_until.future?
   end
 
-  def remaining_slots
-    available_slots - submissions.shortlisted.count
-  end
-
   private
 
   def generate_voting_token
-    self.voting_token = SecureRandom.uuid
+    self.voting_token ||= SecureRandom.uuid
   end
 end

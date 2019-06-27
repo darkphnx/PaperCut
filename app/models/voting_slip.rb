@@ -3,7 +3,7 @@ class VotingSlip
 
   attr_accessor :event, :email_address, :submissions
 
-  validates :email_address, email: true
+  validates :email_address, presence: true, email: true
   validates :submissions, presence: true
   validate :voter_is_unique
 
@@ -31,6 +31,7 @@ class VotingSlip
   private
 
   def voter_is_unique
+    return unless event
     return unless event.voters.where(email_address: email_address).exists?
 
     errors.add(:email_address, "is already associated with a voting slip for this event")

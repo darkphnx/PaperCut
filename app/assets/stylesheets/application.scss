@@ -29,7 +29,7 @@
 }
 
 .main-body {
-   min-height: 40rem;
+   min-height: 50rem;
 }
 
 .rating-widget {
@@ -104,4 +104,61 @@ tbody + tbody {
   .clock {
     margin-right: 0.75rem;
   }
+}
+
+.floating-button-row {
+  position: fixed;
+  left: 0;
+  bottom: 2rem;
+  width: 100%;
+  pointer-events: none;
+}
+
+.floating-button {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.floating-button-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 4rem;
+  width: 4rem;
+
+  background-color: $link;
+  color: $white;
+  border-radius: 50%;
+  box-shadow: $box-shadow;
+  pointer-events: initial;
+}
+
+.floating-button-link:hover {
+  background-color: darken($link, 3);
+  color: $white;
+}
+
+.floating-button-link:active {
+  background-color: darken($link, 5);
+  color: $white;
+}
+
+.floating-button-label {
+  color: $white;
+  background-color: $grey-dark;
+  font-size: $size-7;
+  padding: 8px;
+  border-radius: $radius;
+  margin-right: 8px;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease;
+}
+
+.floating-button-link:hover + .floating-button-label {
+  visibility: visible;
+  opacity: 1;
 }

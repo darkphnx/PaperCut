@@ -15,21 +15,10 @@
     %section.hero.is-primary.is-bold
       .hero-body
         .container
-          .level
-            .level-left
-              .titles
-                %h2.title.is-2= page_title
-                - if page_subtitle
-                  %h3.subtitle.is-4= page_subtitle
-
-            .level-right
-              - unless header_buttons.empty?
-                .buttons
-                  - header_buttons.each do |button|
-                    = link_to button.link, class: 'button is-medium is-primary is-inverted' do
-                      %span.icon
-                        %i.fas.fa-lg{class: "fa-#{button.icon}"}
-
+          .titles
+            %h2.title.is-2= page_title
+            - if page_subtitle
+              %h3.subtitle.is-4= page_subtitle
 
     %section.section.main-body
       .container
@@ -45,6 +34,16 @@
         = flash_messages
 
         = yield
+
+      - unless header_buttons.empty?
+        .floating-button-row
+          .container
+            - header_buttons.each do |button|
+              .floating-button
+                = link_to button.link, class: 'floating-button-link' do
+                  %span.icon
+                    %i.fas.fa-lg{class: "fa-#{button.icon}"}
+                %span.floating-button-label= button.label
 
 
     %footer.footer

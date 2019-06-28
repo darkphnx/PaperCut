@@ -1,24 +1,22 @@
-# README
+# PaperCut
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+PaperCut is a web application to make managing your Call for Papers process
+quick and easy. Use our hosted version at [papercut.wtf](https://papercut.wtf).
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+Use our hosted version at [papercut.wtf](https://papercut.wtf) or follow
+the instructions in [INSTALL.md](./INSTALL.md) to run your own version.
 
-* System dependencies
+Watch a [quick screencast]() for help getting started super-quickly on
+PaperCut.
 
-* Configuration
+## Contributing
 
-* Database creation
+Pull requests are always welcome. To get started, follow the
+[INSTALL.md](INSTALL.md) instructions. If you're familiar with Ruby on Rails
+applications this should all be second nature to you.
 
-* Database initialization
+Please ensure any new functionality comes with tests. This project uses RSpec.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Once you're ready make a Pull Request on GitHub.

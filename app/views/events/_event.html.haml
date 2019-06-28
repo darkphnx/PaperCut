@@ -4,7 +4,7 @@
       %figure.media-left
         %p.image.is-64x64= image_tag rails_blob_path(event.logo), alt: "#{event.name} logo"
       .media-content
-        %p.is-size-5= event.name
+        %p.is-size-5= link_to event.name, event_submissions_path(event), class: 'has-text-grey-dark'
 
 
         %p.is-size-7

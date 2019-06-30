@@ -3,13 +3,12 @@
 PaperCut is a web application to make managing your Call for Papers process
 quick and easy. Use our hosted version at [papercut.wtf](https://papercut.wtf).
 
+![PaperCut Screenshot](https://papercut.wtf/screenshot.png)
+
 ## Usage
 
 Use our hosted version at [papercut.wtf](https://papercut.wtf) or follow
 the instructions in [INSTALL.md](./INSTALL.md) to run your own version.
-
-Watch a [quick screencast]() for help getting started super-quickly on
-PaperCut.
 
 ## Contributing
 

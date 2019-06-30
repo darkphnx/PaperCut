@@ -1,7 +1,7 @@
 .column.is-half
   .box
     %article.media
-      - if event.logo
+      - if event.logo.attached?
         %figure.media-left
           %p.image.is-64x64= image_tag rails_blob_path(event.logo), alt: "#{event.name} logo"
       .media-content

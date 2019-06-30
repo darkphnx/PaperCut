@@ -3,7 +3,7 @@
 - header_button "calendar-plus", new_event_path, "Add Event"
 
 - if @events.exists?
-  .columns= render @events
+  .columns.is-multiline= render @events
 - else
   .box.no-data
     %h3.title.has-text-grey No Events Yet

@@ -13,7 +13,7 @@ class SubmissionsController < ApplicationController
 
   def create
     Submission.transaction do
-      Submission.destroy_all if params[:delete_existing] == '1'
+      @event.submissions.destroy_all if params[:delete_existing] == '1'
       Submission.from_csv(@event, params[:csv_upload].to_io)
     end
 
